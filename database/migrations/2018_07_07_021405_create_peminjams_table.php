@@ -22,7 +22,7 @@ class CreatePeminjamsTable extends Migration
             $table->integer('barang_id')->unsigned()->index();
             $table->foreign('barang_id')->references('id')->on('barangs')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('dipinjam');
-            $table->date('tanggal_pinjam');
+            $table->date('tanggal_kembali');
             $table->timestamps();
         });
     }

@@ -4,8 +4,8 @@
 	<div class="container">
 		<div class="col-md-10">
 			<div class="panel panel-primary">
-			  <div class="panel-heading">Tambah Data Post 
-			  	<div class="panel-title pull-right"><a href="{{ url()->previous() }}">Kembali</a>
+			  <div class="panel-heading">Tambah Data Peminjaman
+			  	<div class="panel-title pull-right"><a href="{{ url()->previous() }}"><i class="fa fa-reply"></i></a>
 			  	</div>
 			  </div>
 			  <div class="panel-body">
@@ -47,12 +47,12 @@
                             </span>
                         @endif
 			  		</div>
-	  	<div class="form-group {{ $errors->has('tanggal_pinjam') ? ' has-error' : '' }}">
-			  			<label class="control-label">Tanggal Pinjam</label>	
-			  			<input type="date" name="tanggal_pinjam" class="form-control"  required>
-			  			@if ($errors->has('tanggal_pinjam'))
+			  		 	<div class="form-group {{ $errors->has('tanggal_kembali') ? ' has-error' : '' }}">
+			  			<label class="control-label">Tanggal Kembali</label>	
+			  			<input type="date" name="tanggal_kembali" class="form-control"  required>
+			  			@if ($errors->has('tanggal_kembali'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('tanggal_pinjam') }}</strong>
+                                <strong>{{ $errors->first('tanggal_kembali') }}</strong>
                             </span>
                         @endif
 			  		</div>

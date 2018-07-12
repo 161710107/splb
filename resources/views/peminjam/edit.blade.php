@@ -47,16 +47,12 @@
                             </span>
                         @endif
 			  		</div>
-			  		<div class="form-group {{ $errors->has('tanggal_pinjam') ? ' has-error' : '' }}">
-			  			<label class="control-label">Nama barang</label>	
-			  			<select name="tanggal_pinjam" class="form-control">
-			  				@foreach($barang as $data)
-			  				<option value="{{ $data->id }}" {{ $selectedbarang == $data->id ? 'selected="selected"' : ''}}>{{ $data->nama_barang }}</option>
-			  				@endforeach
-			  			</select>
-			  			@if ($errors->has('tanggal_pinjam'))
+			  		<div class="form-group {{ $errors->has('tanggal_kembali') ? ' has-error' : '' }}">
+			  			<label class="control-label">tanggal kembali</label>	
+			  			<input type="date" name="tanggal_kembali" class="form-control" value="{{ $tanggal_kembali->tanggal_kembali }}" required>
+			  			@if ($errors->has('tanggal_kembali'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('tanggal_pinjam') }}</strong>
+                                <strong>{{ $errors->first('tanggal_kembali') }}</strong>
                             </span>
                         @endif
 			  		</div>

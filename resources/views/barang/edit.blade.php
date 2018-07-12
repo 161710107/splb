@@ -15,6 +15,7 @@
 			  		<div class="form-group {{ $errors->has('barang') ? ' has-error' : '' }}">
 			  			<label class="control-label">Barang</label>	
 			  			<input type="text" name="nama" class="form-control" value="{{ $barang->nama_barang }}"  required>
+			  		</div>
 			  			<label class="cc-payment" class="control-label mb-1">Gambar</label>
 			  			@if (isset($barang) && $barang->gambar)
 			  			<p>
@@ -24,8 +25,19 @@
 
 			  			@endif
 			  			<input type="file" name="gambar" value="{{ $barang->gambar }}">
-			  			<label class="control-label">Jumlah</label>
-			  			<input type="text" name="jumlah" class="form-control" value="{{ $barang->jumlah }}"  required>
+			  			
+			  			<div class="form-group {{ $errors->has('kondisi') ? ' has-error' : '' }}">
+			  			<label class="control-label">kondisi</label>
+			  			<input type="text" name="kondisi" class="form-control" value="{{ $barang->kondisi }}"  required>
+			  			@if ($errors->has('barang'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('barang') }}</strong>
+                            </span>
+                        @endif
+			  		</div>
+			  		<div class="form-group {{ $errors->has('stok') ? ' has-error' : '' }}">
+			  			<label class="control-label">stok</label>
+			  			<input type="text" name="stok" class="form-control" value="{{ $barang->stok }}"  required>
 			  			@if ($errors->has('barang'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('barang') }}</strong>

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Barang extends Model
 {
  protected $table = 'barangs';
-    protected $fillable = ['nama_barang','gambar','jumlah'];
+    protected $fillable = ['nama_barang','gambar','kondisi','stok'];
     public $timestamps = true;
 
  public function peminjam() 

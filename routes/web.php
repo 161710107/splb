@@ -18,6 +18,14 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin']], // middleware = untuk aturan atau men cek
+function (){
 Route::resource('/barang','BarangController');
-
 Route::resource('/peminjam','PeminjamController');
+Route::resource('/user','userController');
+});
+Route::group(['prefix'=>'member','middleware'=>['auth','role:member|admin']], // middleware = untuk aturan atau men cek
+function (){
+Route::resource('/front','FrontendController');
+Route::resource('/barang','BarangController');
+});

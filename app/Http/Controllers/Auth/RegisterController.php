@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use App\Role;
 class RegisterController extends Controller
 {
     /*
@@ -63,10 +63,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'password' => Hash::make($data['password']),//sama seperti bcrypt
         ]);
+        $memberRole = Role::where('name','member')->first();//role adalah peran permission ijin
+        $user->attachRole($memberRole);//attach role bagian dari package , 
+        return $user;
     }
 }

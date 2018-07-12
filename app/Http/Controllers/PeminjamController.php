@@ -44,14 +44,17 @@ class PeminjamController extends Controller
             'user_id' => 'required|',
             'barang_id' => 'required|',
             'dipinjam' => 'required|',
-            'tanggal_pinjam' => 'required|'
+            'tanggal_kembali' => 'required|'
         ]);
         $peminjam = new peminjam;
         $peminjam->dipinjam = $request->dipinjam;
         $peminjam->user_id = $request->user_id;
         $peminjam->barang_id = $request->barang_id;
-        $peminjam->tanggal_pinjam = $request->tanggal_pinjam;
-        $peminjam->save();
+        $peminjam->tanggal_kembali = $request->tanggal_kembali;
+        $barang = barang::findOrFail($peminjam->barang_id);
+        $barang->stok= $barang->stok - $request->dipinjam; 
+         $peminjam->save();
+         $barang->save();
         return redirect()->route('peminjam.index');
     }
 
@@ -77,10 +80,11 @@ class PeminjamController extends Controller
         $peminjam = peminjam::findOrFail($id);
         $user = user::all();
         $barang = barang::all();
+         $tanggal_kembali = peminjam::findOrFail($id); 
         $selecteduser = peminjam::findOrFail($id)->user_id;
         $selectedbarang = peminjam::findOrFail($id)->barang_id;
         // dd($selected);
-        return view('peminjam.edit',compact('peminjam','user','selecteduser','selectedbarang','barang'));
+        return view('peminjam.edit',compact('peminjam','user','selecteduser','selectedbarang','barang','tanggal_kembali'));
     }
 
     /**
@@ -96,12 +100,12 @@ class PeminjamController extends Controller
             'user_id' => 'required|',
             'barang_id' => 'required|',
             'dipinjam' => 'required|',
-            'tanggal_pinjam' => 'required|'
+            'tanggal_kembali' => 'required|'
         ]);
         $peminjam = peminjam::findOrFail($id);
         $peminjam->dipinjam = $request->dipinjam;
         $peminjam->user_id = $request->user_id;
-         $peminjam->tanggal_pinjam = $request->tanggal_pinjam;
+          $peminjam->tanggal_kembali = $request->tanggal_kembali;
         $peminjam->save();
         return redirect()->route('peminjam.index');
     }
